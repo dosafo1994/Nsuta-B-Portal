@@ -1,8 +1,8 @@
-// Role-based access control for protected pages
+// guard.js — Role-based access control
 
 const sessionRole = sessionStorage.getItem("role");
 
-// Map expected page type to required role
+// Title-to-role mapping
 const pageRoleMap = {
   "Headteacher Dashboard": "headteacher",
   "Teacher Score Entry": "teacher",
@@ -20,10 +20,10 @@ const pageRoleMap = {
 const currentTitle = document.title.trim();
 const requiredRole = pageRoleMap[currentTitle];
 
-// 🔐 If page requires a role and user is not logged in or mismatched, redirect to homepage
+// Redirect to welcome if session is missing or mismatched
 if (
   requiredRole &&
   (!sessionRole || sessionRole !== requiredRole)
 ) {
-  location.href = "index.html"; // Welcome page is now index.html
+  location.href = "index.html"; // This is now the welcome page
 }
