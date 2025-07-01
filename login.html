@@ -88,11 +88,11 @@
       const found = users.find(u => u.phone === phone && u.pin === pin);
 
       if (!found) {
-        errorBox.textContent = "Invalid phone or PIN.";
+        errorBox.textContent = "Invalid phone number or PIN.";
         return;
       }
 
-      // Set session and active user
+      // Set session and local user context
       sessionStorage.setItem("username", phone);
       sessionStorage.setItem("displayName", found.name);
       sessionStorage.setItem("role", found.role);
@@ -102,14 +102,16 @@
         role: found.role
       }));
 
-      // Redirect by role
-      if (found.role === "teacher") {
-        window.location.href = "score-entry.html";
-      } else if (found.role === "headteacher") {
-        window.location.href = "dashboard.html";
-      } else {
-        errorBox.textContent = "Unknown role: " + found.role;
-      }
+      // Small delay to ensure session is fully set before redirect
+      setTimeout(() => {
+        if (found.role === "teacher") {
+          window.location.href = "score-entry.html";
+        } else if (found.role === "headteacher") {
+          window.location.href = "dashboard.html"; // formerly index.html
+        } else {
+          errorBox.textContent = "Unknown role: " + found.role;
+        }
+      }, 100); // 100ms safety delay
     }
   </script>
 </body>
