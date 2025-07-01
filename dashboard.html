@@ -5,15 +5,15 @@
   <title>Headteacher Dashboard</title> <!-- 🔥 This MUST match guard.js -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="router.js"></script>
-  <script>
-    const activeUser = JSON.parse(localStorage.getItem("activeUser"));
-    if (!sessionStorage.getItem("role") && activeUser?.role === "headteacher") {
-      sessionStorage.setItem("username", activeUser.username);
-      sessionStorage.setItem("displayName", activeUser.displayName);
-      sessionStorage.setItem("role", activeUser.role);
-    }
-  </script>
-  <script src="guard.js"></script>
+ <script>
+  const activeUser = JSON.parse(localStorage.getItem("activeUser"));
+  if (!sessionStorage.getItem("role") && activeUser?.role === "headteacher") {
+    sessionStorage.setItem("username", activeUser.username);
+    sessionStorage.setItem("displayName", activeUser.displayName);
+    sessionStorage.setItem("role", activeUser.role);
+  }
+</script>
+<script src="guard.js"></script>
 
   <style>
     body {
